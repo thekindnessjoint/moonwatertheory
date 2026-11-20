@@ -129,6 +129,11 @@ h2{margin:0 0 1.5rem;font-weight:500;font-style:italic;font-size:clamp(2rem,7vw,
   box-shadow:0 10px 30px rgba(5,0,15,.35);transition:transform .25s,border-color .25s,box-shadow .25s;
 }
 .card:hover,.card:focus-visible{transform:translateY(-3px);border-color:rgba(243,220,146,.7);box-shadow:0 14px 38px rgba(5,0,15,.5),0 0 28px rgba(217,180,90,.12)}
+.card.has-img{display:grid;grid-template-columns:minmax(0,1fr) 84px;column-gap:1rem;row-gap:.55rem;align-content:start}
+.card.has-img>*{grid-column:1}
+.card.has-img>.thumb{grid-column:2;grid-row:1 / span 4;width:84px;height:114px;object-fit:cover;border-radius:10px;border:1px solid rgba(217,180,90,.5);box-shadow:0 6px 18px rgba(5,0,15,.5)}
+.card.has-img .spark{display:none}
+.card.has-img .meta{letter-spacing:.12em;padding-right:0}
 .card .spark{position:absolute;top:15px;right:15px;width:14px;height:14px;color:var(--gold);opacity:.75}
 .meta{margin:0;display:flex;flex-direction:column;gap:.3rem;font:500 .7rem/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-right:1.5rem}
 .meta .md{color:var(--muted);font-weight:400}
@@ -156,7 +161,10 @@ h2{margin:0 0 1.5rem;font-weight:500;font-style:italic;font-size:clamp(2rem,7vw,
 .prose p{margin:0 0 1.5rem;font-size:1.38rem;line-height:1.72;color:#f6f0ff}
 .prose em{color:var(--gold-hi)}
 .lead{margin:0 0 2.2rem;padding:.3rem 0 .3rem 1.3rem;border-left:2px solid var(--gold);font-style:italic;font-size:1.6rem;line-height:1.5;color:var(--gold-hi)}
-.watch{margin:2rem 0 0}
+.shot{margin:2.2rem 0 0;display:flex;flex-direction:column;align-items:flex-start;gap:.65rem}
+.shot img{display:block;width:min(56%,230px);height:auto;border-radius:14px;border:1px solid rgba(217,180,90,.55);box-shadow:0 12px 34px rgba(5,0,15,.55),0 0 26px rgba(217,180,90,.12)}
+.shot figcaption{font:400 .68rem/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:rgba(188,174,219,.75)}
+.watch{margin:1.8rem 0 0}
 .watch a{display:inline-block;padding:.9rem 1.5rem;border-radius:999px;border:1px solid var(--gold);color:var(--gold-hi);text-decoration:none;font:500 .76rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;background:rgba(36,16,70,.55);transition:background .25s,box-shadow .25s}
 .watch a:hover{background:rgba(217,180,90,.14);box-shadow:0 0 26px rgba(217,180,90,.22)}
 .endmark{display:flex;justify-content:center;color:var(--gold);margin:2.4rem 0 2rem}
@@ -305,6 +313,10 @@ footer .ornament{max-width:16rem;margin:0 auto}
       <div class="rule"></div>
       <blockquote class="lead" id="r-lead" hidden></blockquote>
       <div class="prose" id="r-body"></div>
+      <figure class="shot" id="r-fig" hidden>
+        <img id="r-img" alt="">
+        <figcaption>the post, as it appeared on tiktok</figcaption>
+      </figure>
       <p class="watch" id="r-watch" hidden></p>
     </article>
     <div class="endmark" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
@@ -353,14 +365,17 @@ footer .ornament{max-width:16rem;margin:0 auto}
        body    : the full entry. leave a blank line between
                  paragraphs. put *stars* around words to italicize.
        tiktok  : (optional) link to the video — adds a "watch" button
-     The entries marked "placeholder" are sample writing — swap in your own.
+       image   : (optional) picture file, e.g. "images/my-post.jpg"
+       imageAlt: (optional) a short description of the picture
+       placeholder: true  marks sample writing; those are always listed
+                 after your real entries. delete them as you replace them.
   ─────────────────────────────────────────────────────────── */
   var POSTS = [
     {
       slug: "sometimes-overgiving-isnt-kindness",
       title: "sometimes overgiving isn't kindness",
       theme: "patterns",
-      date: "2026-11-20",
+      date: "2026-09-01",
       excerpt: "Sometimes overgiving isn't kindness. Sometimes it's fear of not being needed.",
       lead: `Sometimes
 overgiving isn't kindness.
@@ -381,12 +396,15 @@ And when it isn't returned, resentment quietly grows.
 
 Real generosity has freedom in it 🌙
 You don't have to make yourself indispensable to deserve a place in someone's life.`,
-      tiktok: "https://www.tiktok.com/t/ZPNNWrjkT/"
+      tiktok: "https://www.tiktok.com/t/ZPNNWrjkT/",
+      image: "images/overgiving-post.jpg",
+      imageAlt: "A cloaked figure seen from behind stands beside a stone well on a lantern-lit forest path at dusk, with the post's words written across the scene."
     },
 
     /* ── placeholder entries below: sample writing, to be replaced ── */
     {
       slug: "the-quiet-ones-leave-slowly",
+      placeholder: true,
       title: "the quiet ones leave slowly",
       theme: "patterns",
       date: "2026-11-19",
@@ -403,6 +421,7 @@ you're allowed to hold both. the ache, and the understanding. neither one cancel
     },
     {
       slug: "your-moon-is-the-part-the-room-never-meets",
+      placeholder: true,
       title: "your moon is the part the room never meets",
       theme: "astrology",
       date: "2026-11-16",
@@ -417,6 +436,7 @@ look up your moon sign sometime. not to be told who you are. just to see which w
     },
     {
       slug: "fog-on-the-lake-one-lantern-lit",
+      placeholder: true,
       title: "fog on the lake, one lantern lit",
       theme: "stillness",
       date: "2026-11-13",
@@ -431,6 +451,7 @@ set it down for a minute. the dark isn't going anywhere. neither are you.`
     },
     {
       slug: "the-part-of-you-that-is-still-on-watch",
+      placeholder: true,
       title: "the part of you that is still on watch",
       theme: "healing",
       date: "2026-11-10",
@@ -445,6 +466,7 @@ be gentle with the part that's still on watch. it kept you alive. it just doesn'
     },
     {
       slug: "when-explaining-becomes-armor",
+      placeholder: true,
       title: "when explaining becomes armor",
       theme: "patterns",
       date: "2026-11-07",
@@ -459,6 +481,7 @@ the safe ones don't require a defense. you'll feel your shoulders drop around th
     },
     {
       slug: "water-moons-feel-the-weather-first",
+      placeholder: true,
       title: "water moons feel the weather first",
       theme: "astrology",
       date: "2026-11-03",
@@ -480,7 +503,9 @@ if you have a water moon, maybe the question isn't *why am i so sensitive?* mayb
   var descTag = document.querySelector('meta[name="description"]');
   var BASE_DESC = descTag ? descTag.getAttribute("content") : "";
 
-  POSTS.sort(function (a, b) { return b.date.localeCompare(a.date); });
+  POSTS.sort(function (a, b) {
+    return (a.placeholder ? 1 : 0) - (b.placeholder ? 1 : 0) || b.date.localeCompare(a.date);
+  });
 
   function esc(s) {
     return s.replace(/[&<>"]/g, function (c) {
@@ -493,13 +518,13 @@ if you have a water moon, maybe the question isn't *why am i so sensitive?* mayb
       return "<p>" + p.split("\n").map(inline).join("<br>") + "</p>";
     }).join("");
   }
-  function fmtDate(d) {
-    return new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).toLowerCase();
+  function fmtDate(d, short) {
+    return new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: short ? "short" : "long", day: "numeric", year: "numeric" }).toLowerCase();
   }
   function mins(b) { return Math.max(1, Math.round(b.trim().split(/\s+/).length / 200)); }
-  function metaLine(p) {
+  function metaLine(p, short) {
     return '<span class="mt">' + esc(THEMES[p.theme] || p.theme) + '</span>' +
-           '<span class="md">' + fmtDate(p.date) + " · " + mins(p.body) + " min read</span>";
+           '<span class="md">' + fmtDate(p.date, short) + " · " + mins(p.body) + " min read</span>";
   }
 
   /* twinkling field */
@@ -533,12 +558,14 @@ if you have a water moon, maybe the question isn't *why am i so sensitive?* mayb
     var items = POSTS.filter(function (p) { return current === "all" || p.theme === current; });
     $("#count").textContent = items.length + (items.length === 1 ? " entry" : " entries");
     $("#list").innerHTML = items.map(function (p) {
-      return '<a class="card" href="#/post/' + esc(p.slug) + '">' +
+      return '<a class="card' + (p.image ? " has-img" : "") + '" href="#/post/' + esc(p.slug) + '">' +
         '<svg class="spark" aria-hidden="true"><use href="#sparkle"/></svg>' +
-        '<p class="meta">' + metaLine(p) + "</p>" +
+        '<p class="meta">' + metaLine(p, true) + "</p>" +
         "<h3>" + esc(p.title) + "</h3>" +
         '<p class="ex">' + inline(p.excerpt) + "</p>" +
-        '<span class="more">read →</span></a>';
+        '<span class="more">read →</span>' +
+        (p.image ? '<img class="thumb" src="' + esc(p.image) + '" alt="" loading="lazy">' : "") +
+        "</a>";
     }).join("");
   }
   $("#chips").addEventListener("click", function (e) {
@@ -580,6 +607,9 @@ if you have a water moon, maybe the question isn't *why am i so sensitive?* mayb
     lead.hidden = !p.lead;
     lead.innerHTML = p.lead ? p.lead.trim().split("\n").map(inline).join("<br>") : "";
     $("#r-body").innerHTML = paras(p.body);
+    var fig = $("#r-fig");
+    fig.hidden = !p.image;
+    if (p.image) { $("#r-img").src = p.image; $("#r-img").alt = p.imageAlt || ""; }
     var watch = $("#r-watch");
     watch.hidden = !p.tiktok;
     watch.innerHTML = p.tiktok ? '<a href="' + esc(p.tiktok) + '" target="_blank" rel="noopener">watch this on tiktok ↗</a>' : "";
