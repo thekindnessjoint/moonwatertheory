@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>moonwater theory — midnight philosophy</title>
+<meta name="description" content="a quiet place for people who stare at the moon a little too long. astrology, emotional patterns, stillness, and healing.">
+<meta name="theme-color" content="#150a29">
+<meta property="og:title" content="moonwater theory">
+<meta property="og:description" content="midnight philosophy for the ones who read between the lines.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23241046'/%3E%3Ccircle cx='28' cy='34' r='18' fill='%23f3dc92'/%3E%3Ccircle cx='38' cy='28' r='16' fill='%23241046'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0b0415; --night:#150a29; --deep:#241046; --amethyst:#4a1f8a; --violet:#6d3bbf; --lilac:#b79cf0;
+  --gold:#d9b45a; --gold-hi:#f3dc92; --gold-lo:#a9863a;
+  --text:#f1e9ff; --muted:#bcaedb;
+  --serif:'Cormorant Garamond','Cormorant',Georgia,'Times New Roman',serif;
+  --sans:'Jost','Avenir Next','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100vh;color:var(--text);
+  font-family:var(--serif);font-weight:500;font-size:1.25rem;line-height:1.7;
+  background-color:var(--ink);
+  background-image:
+    radial-gradient(1100px 700px at 85% -8%, rgba(109,59,191,.42), transparent 62%),
+    radial-gradient(900px 640px at -5% 38%, rgba(74,31,138,.5), transparent 62%),
+    radial-gradient(1000px 800px at 65% 108%, rgba(60,10,110,.65), transparent 62%);
+  background-repeat:no-repeat;
+}
+/* marbled ink + gold veins, painted once on a fixed layer */
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.95;
+  background-size:900px 900px;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='v' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0032 .0058' numOctaves='4' seed='23' stitchTiles='stitch'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0 0 .55 0 0 0 0 0 .4 0 0 0 0 0'/%3E%3C/feComponentTransfer%3E%3CfeColorMatrix values='0 0 0 0 .9 0 0 0 0 .74 0 0 0 0 .38 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23v)' opacity='.55'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m' x='0' y='0' width='100%25' height='100%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.0042 .0078' numOctaves='5' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .43 0 0 0 0 .2 0 0 0 0 .85 0 0 0 1.9 -.78'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+}
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#stars i{position:absolute;display:block;border-radius:50%;background:var(--gold-hi);animation:tw 4s ease-in-out infinite}
+#stars svg{position:absolute;color:var(--gold-hi);animation:tw 5s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.18}50%{opacity:.95}}
+::selection{background:rgba(217,180,90,.35)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:10px}
+[id]{scroll-margin-top:76px}
+.site{position:relative;z-index:1}
+
+/* header */
+.bar{
+  position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;
+  height:60px;padding:0 max(1.1rem,env(safe-area-inset-left));
+  background:rgba(11,4,21,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(217,180,90,.16);
+}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;font-style:italic;font-size:1.35rem;font-weight:500;color:var(--gold-hi)}
+.brand svg{width:22px;height:22px}
+.bar nav{display:flex;gap:1.3rem}
+.bar nav a{font:500 .74rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:.7rem 0}
+.bar nav a:hover{color:var(--gold-hi)}
+
+/* hero */
+.hero{
+  min-height:calc(100vh - 60px);min-height:calc(100svh - 60px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:1.2rem 1.25rem 3rem;
+}
+.scene{width:min(92vw,470px);height:auto;overflow:visible;margin-bottom:.2rem}
+.scene .tw{animation:tw 4.5s ease-in-out infinite}
+.scene .tw2{animation:tw 6s ease-in-out infinite;animation-delay:-2s}
+.scene .tw3{animation:tw 3.4s ease-in-out infinite;animation-delay:-1s}
+.scene .rip{animation:drift 7s ease-in-out infinite alternate}
+.scene .rip:nth-of-type(2n){animation-duration:9s;animation-delay:-3s}
+.scene .rip:nth-of-type(3n){animation-duration:6s;animation-delay:-1.5s}
+@keyframes drift{from{transform:translateX(-5px);opacity:.55}to{transform:translateX(5px);opacity:1}}
+.title{
+  margin:.2rem 0 .5rem;font-weight:500;font-style:italic;line-height:1.02;letter-spacing:.01em;
+  font-size:clamp(2.7rem,12vw,4.8rem);color:var(--gold-hi);
+  background:linear-gradient(180deg,#fff2c4 0%,var(--gold-hi) 38%,var(--gold) 72%,var(--gold-lo) 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 18px rgba(217,180,90,.25));
+}
+.tagline{margin:0;max-width:27rem;font-style:italic;font-size:clamp(1.25rem,4.8vw,1.6rem);line-height:1.4;color:var(--muted)}
+.btn{
+  display:inline-block;margin-top:1.7rem;padding:1rem 1.8rem;border-radius:999px;border:1px solid var(--gold);
+  color:var(--gold-hi);text-decoration:none;font:500 .78rem/1 var(--sans);letter-spacing:.24em;text-transform:uppercase;
+  background:rgba(36,16,70,.55);transition:background .25s,box-shadow .25s,transform .25s;
+}
+.btn:hover{background:rgba(217,180,90,.14);box-shadow:0 0 28px rgba(217,180,90,.25);transform:translateY(-1px)}
+.currents-line{margin:1.6rem 0 0;font:400 .72rem/1.6 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(188,174,219,.78)}
+
+/* blocks */
+.block{padding:4.2rem 0 .6rem}
+.wrap{width:min(100% - 2.5rem,46rem);margin-inline:auto}
+.wide{width:min(100% - 2.5rem,62rem);margin-inline:auto}
+.kicker{margin:0 0 .5rem;font:500 .72rem/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+h2{margin:0 0 1.5rem;font-weight:500;font-style:italic;font-size:clamp(2rem,7vw,2.8rem);line-height:1.12}
+.ornament{display:flex;align-items:center;gap:.9rem;color:var(--gold);margin:0 0 1.1rem}
+.ornament::before,.ornament::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(217,180,90,.55))}
+.ornament::after{transform:scaleX(-1)}
+.ornament svg{width:14px;height:14px}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 .6rem}
+.chip{
+  min-height:44px;padding:.7rem 1.05rem;border-radius:999px;cursor:pointer;
+  font:500 .78rem/1 var(--sans);letter-spacing:.1em;color:var(--muted);
+  background:rgba(21,10,41,.45);border:1px solid rgba(217,180,90,.35);transition:all .2s;
+}
+.chip:hover{color:var(--gold-hi);border-color:var(--gold)}
+.chip[aria-pressed="true"]{color:#1a0b2e;background:linear-gradient(135deg,var(--gold-hi),var(--gold));border-color:transparent}
+.count{margin:0 0 1.3rem;font:400 .74rem/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:rgba(188,174,219,.75)}
+
+/* cards */
+.list{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr))}
+.card{
+  position:relative;display:flex;flex-direction:column;gap:.55rem;padding:1.45rem 1.4rem 1.3rem;border-radius:18px;
+  text-decoration:none;color:inherit;border:1px solid rgba(217,180,90,.28);
+  background:linear-gradient(160deg,rgba(74,31,138,.5),rgba(21,10,41,.84));
+  box-shadow:0 10px 30px rgba(5,0,15,.35);transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:rgba(243,220,146,.7);box-shadow:0 14px 38px rgba(5,0,15,.5),0 0 28px rgba(217,180,90,.12)}
+.card .spark{position:absolute;top:15px;right:15px;width:14px;height:14px;color:var(--gold);opacity:.75}
+.meta{margin:0;display:flex;flex-direction:column;gap:.3rem;font:500 .7rem/1.4 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-right:1.5rem}
+.meta .md{color:var(--muted);font-weight:400}
+.card h3{margin:0;font-weight:500;font-style:italic;font-size:1.7rem;line-height:1.18}
+.card p.ex{margin:0;color:var(--muted);font-size:1.15rem;line-height:1.55}
+.more{margin-top:auto;padding-top:.5rem;font:500 .72rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold-hi)}
+
+/* about */
+.about{padding:1.9rem 1.55rem;border-radius:22px;border:1px solid rgba(217,180,90,.28);background:linear-gradient(170deg,rgba(74,31,138,.32),rgba(11,4,21,.65))}
+.about p{margin:0 0 1.15rem;font-size:1.3rem;line-height:1.65}
+.about p em{color:var(--gold-hi)}
+.currents{list-style:none;margin:1.8rem 0 0;padding:0;display:grid;gap:1.1rem}
+.currents li{display:grid;grid-template-columns:18px 1fr;gap:.85rem;align-items:start}
+.currents svg{width:16px;height:16px;margin-top:.5rem;color:var(--gold)}
+.currents strong{display:block;font-weight:600;font-style:italic;font-size:1.3rem;color:var(--gold-hi);line-height:1.25}
+.currents span{display:block;color:var(--muted);font-size:1.1rem;line-height:1.5}
+
+/* reader */
+.reader{padding:2rem 0 3rem}
+.back{display:inline-block;padding:.6rem 0;font:500 .74rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:var(--gold)}
+.back:hover{color:var(--gold-hi)}
+.reader h1{margin:.6rem 0 1rem;font-weight:500;font-style:italic;font-size:clamp(2.3rem,9vw,3.5rem);line-height:1.08}
+.reader .meta{padding-right:0}
+.rule{height:1px;margin:0 0 2rem;background:linear-gradient(90deg,var(--gold),transparent);opacity:.6}
+.prose p{margin:0 0 1.5rem;font-size:1.38rem;line-height:1.72;color:#f6f0ff}
+.prose em{color:var(--gold-hi)}
+.endmark{display:flex;justify-content:center;color:var(--gold);margin:2.4rem 0 2rem}
+.endmark svg{width:18px;height:18px}
+.pager{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;padding-top:1.4rem;border-top:1px solid rgba(217,180,90,.2)}
+.pager a{font:500 .74rem/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--gold-hi);padding:.5rem 0}
+.pager a em{display:block;font-family:var(--serif);font-size:1.25rem;letter-spacing:0;text-transform:none;color:var(--text);margin-top:.2rem}
+
+/* footer */
+footer{position:relative;z-index:1;text-align:center;padding:3.5rem 1.25rem calc(3rem + env(safe-area-inset-bottom))}
+footer .brandline{margin:.6rem 0 0;font-style:italic;font-size:1.25rem;color:var(--muted)}
+footer .small{margin:.7rem 0 0;font:400 .68rem/1.6 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:rgba(188,174,219,.6)}
+footer .social{display:flex;gap:1.4rem;justify-content:center;margin-top:1rem}
+footer .social a{font:500 .74rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:var(--gold-hi);padding:.6rem 0}
+footer .ornament{max-width:16rem;margin:0 auto}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<!-- shared drawing defs (not shown) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8e8ae"/><stop offset=".55" stop-color="#d9b45a"/><stop offset="1" stop-color="#a9863a"/>
+    </linearGradient>
+    <symbol id="sparkle" viewBox="-10 -10 20 20">
+      <path d="M0 -10 Q1.1 -1.1 10 0 Q1.1 1.1 0 10 Q-1.1 1.1 -10 0 Q-1.1 -1.1 0 -10Z" fill="currentColor"/>
+    </symbol>
+    <path id="cres" d="M208.2 72.4 A78 78 0 1 0 269.3 185.8 A66 66 0 1 1 208.2 72.4Z"/>
+  </defs>
+</svg>
+
+<div id="stars" aria-hidden="true"></div>
+
+<div class="site">
+  <header class="bar">
+    <a class="brand" href="#top" aria-label="moonwater theory, home">
+      <svg viewBox="116 66 160 166" aria-hidden="true"><use href="#cres" fill="none" stroke="url(#gold)" stroke-width="11" stroke-linejoin="round"/></svg>
+      <span>moonwater theory</span>
+    </a>
+    <nav aria-label="main"><a href="#journal">journal</a><a href="#about">about</a></nav>
+  </header>
+
+  <div id="home">
+    <section class="hero" id="top">
+      <svg class="scene" viewBox="0 0 400 350" role="img" aria-label="a gold crescent moon above a still, dark lake">
+        <defs>
+          <linearGradient id="horizon" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#d9b45a" stop-opacity="0"/><stop offset=".5" stop-color="#f3dc92" stop-opacity=".95"/><stop offset="1" stop-color="#d9b45a" stop-opacity="0"/>
+          </linearGradient>
+          <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+            <stop offset="0" stop-color="#f3dc92" stop-opacity=".3"/><stop offset="1" stop-color="#f3dc92" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+
+        <circle cx="200" cy="150" r="150" fill="url(#glow)"/>
+        <circle cx="200" cy="150" r="106" fill="none" stroke="#d9b45a" stroke-opacity=".34" stroke-width="1" stroke-dasharray="1 5.5" stroke-linecap="round"/>
+        <circle cx="200" cy="150" r="124" fill="none" stroke="#d9b45a" stroke-opacity=".2" stroke-width=".8"/>
+
+        <!-- the moon: two nested crescents, the inner one beaded -->
+        <use href="#cres" fill="rgba(243,220,146,.1)" stroke="url(#gold)" stroke-width="2.2" stroke-linejoin="round"/>
+        <use href="#cres" transform="translate(200 150) scale(.8) translate(-200 -150)" fill="none" stroke="#f3dc92" stroke-opacity=".75" stroke-width="1.8" stroke-dasharray=".5 5" stroke-linecap="round"/>
+
+        <!-- stars -->
+        <g style="color:#f3dc92">
+          <g class="tw" transform="translate(322 92)">
+            <path d="M-30 0H30M0 -30V30" stroke="#d9b45a" stroke-width=".8" stroke-opacity=".6"/>
+            <use href="#sparkle" x="-17" y="-17" width="34" height="34"/>
+          </g>
+          <use class="tw2" href="#sparkle" x="78" y="84" width="22" height="22"/>
+          <use class="tw3" href="#sparkle" x="120" y="28" width="13" height="13"/>
+          <use class="tw" href="#sparkle" x="350" y="168" width="14" height="14"/>
+          <use class="tw2" href="#sparkle" x="40" y="176" width="12" height="12"/>
+          <use class="tw3" href="#sparkle" x="262" y="22" width="11" height="11"/>
+          <use class="tw" href="#sparkle" x="296" y="214" width="9" height="9"/>
+          <use class="tw2" href="#sparkle" x="96" y="222" width="9" height="9"/>
+          <g fill="#f3dc92">
+            <circle class="tw3" cx="62" cy="130" r="1.6"/><circle class="tw" cx="150" cy="60" r="1.3"/>
+            <circle class="tw2" cx="336" cy="40" r="1.5"/><circle class="tw3" cx="372" cy="118" r="1.3"/>
+            <circle class="tw" cx="30" cy="70" r="1.2"/><circle class="tw2" cx="236" cy="14" r="1.4"/>
+            <circle class="tw3" cx="318" cy="150" r="1.1"/><circle class="tw" cx="104" cy="168" r="1.2"/>
+            <circle class="tw2" cx="372" cy="226" r="1.3"/><circle class="tw3" cx="20" cy="236" r="1.4"/>
+          </g>
+        </g>
+
+        <!-- the lake -->
+        <rect x="14" y="262" width="372" height="1.2" fill="url(#horizon)"/>
+        <g fill="none" stroke="#d9b45a" stroke-linecap="round">
+          <path class="rip" d="M136 276H260" stroke-width="1.8" stroke-dasharray="30 5 18 5 52" stroke-opacity=".9"/>
+          <path class="rip" d="M148 289H248" stroke-width="1.7" stroke-dasharray="20 6 30 6 28" stroke-opacity=".72"/>
+          <path class="rip" d="M158 302H238" stroke-width="1.6" stroke-dasharray="14 7 24 7 20" stroke-opacity=".55"/>
+          <path class="rip" d="M170 316H228" stroke-width="1.5" stroke-dasharray="12 8 16 8 10" stroke-opacity=".4"/>
+          <path class="rip" d="M184 331H216" stroke-width="1.4" stroke-dasharray="8 8 10" stroke-opacity=".28"/>
+          <path class="rip" d="M44 281H96" stroke-width="1.2" stroke-dasharray="10 6 22" stroke-opacity=".3"/>
+          <path class="rip" d="M306 297H362" stroke-width="1.2" stroke-dasharray="16 6 14" stroke-opacity=".3"/>
+          <path class="rip" d="M64 306H104" stroke-width="1" stroke-dasharray="8 6 12" stroke-opacity=".2"/>
+        </g>
+      </svg>
+
+      <h1 class="title">moonwater theory</h1>
+      <p class="tagline">midnight philosophy for the ones who read between the lines.</p>
+      <a class="btn" href="#journal">enter the journal</a>
+      <p class="currents-line">astrology · emotional patterns · stillness · healing</p>
+    </section>
+
+    <section class="block wide" id="journal">
+      <div class="ornament" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
+      <p class="kicker">the journal</p>
+      <h2>notes from beneath the moon</h2>
+      <div class="chips" id="chips" role="group" aria-label="filter entries by theme"></div>
+      <p class="count" id="count" aria-live="polite"></p>
+      <div class="list" id="list"></div>
+      <noscript><p>this journal needs javascript to open its pages.</p></noscript>
+    </section>
+
+    <section class="block wrap" id="about">
+      <div class="ornament" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
+      <p class="kicker">about</p>
+      <h2>a quiet place to be understood</h2>
+      <div class="about">
+        <p>moonwater theory is a faceless little sanctuary for introspective souls — the ones who stare at the moon a little too long, read between the lines of conversations, and look for meaning underneath ordinary days.</p>
+        <p>it lives where astrology, emotional intelligence, healing, and quiet wonder meet. not predictions. not advice. not slogans. just the hidden patterns that shape how we love, leave, protect ourselves, and slowly soften.</p>
+        <p>the goal isn't views. it's recognition — that small, startling <em>i've never heard it put that way before.</em> if one of these pages gave language to something you've carried for years without a name, it did its job.</p>
+        <ul class="currents">
+          <li><svg aria-hidden="true"><use href="#sparkle"/></svg><div><strong>emotional patterns</strong><span>attachment, boundaries, and the things we do without knowing why.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#sparkle"/></svg><div><strong>astrology as language</strong><span>the sky as a vocabulary, not a forecast.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#sparkle"/></svg><div><strong>atmospheric reflection</strong><span>moonlit lakes, snowfall, lanterns, and the stillness that follows.</span></div></li>
+          <li><svg aria-hidden="true"><use href="#sparkle"/></svg><div><strong>healing &amp; transformation</strong><span>from survival to peace, from armor to something softer.</span></div></li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <main id="reader" class="reader wrap" hidden>
+    <a class="back" href="#journal">← the journal</a>
+    <article>
+      <p class="meta" id="r-meta"></p>
+      <h1 id="r-title"></h1>
+      <div class="rule"></div>
+      <div class="prose" id="r-body"></div>
+    </article>
+    <div class="endmark" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
+    <nav class="pager" id="r-pager" aria-label="more entries"></nav>
+  </main>
+
+  <footer>
+    <div class="ornament" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
+    <p class="brandline">moonwater theory</p>
+    <p class="small">written beneath the moon</p>
+    <div class="social" id="social"></div>
+    <p class="small">© <span id="yr"></span></p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ───────────────────────────────────────────────────────────
+     SETTINGS — paste your links between the quotes, e.g.
+     tiktok: "https://www.tiktok.com/@yourhandle"
+     Leave one empty and it simply won't show.
+  ─────────────────────────────────────────────────────────── */
+  var SOCIAL = { tiktok: "", instagram: "" };
+
+  /* ───────────────────────────────────────────────────────────
+     THEMES — the four currents. Each entry below uses one key.
+  ─────────────────────────────────────────────────────────── */
+  var THEMES = {
+    patterns:  "emotional patterns",
+    astrology: "astrology",
+    stillness: "stillness",
+    healing:   "healing"
+  };
+
+  /* ───────────────────────────────────────────────────────────
+     THE JOURNAL — add a new entry by copying one block, pasting
+     it at the TOP of the list, and changing the words.
+       slug    : short, lowercase, dashes (becomes the page link)
+       theme   : patterns | astrology | stillness | healing
+       date    : YYYY-MM-DD
+       excerpt : the line shown on the card
+       body    : the full entry. leave a blank line between
+                 paragraphs. put *stars* around words to italicize.
+     These six are placeholders in the brand voice — swap in your own.
+  ─────────────────────────────────────────────────────────── */
+  var POSTS = [
+    {
+      slug: "the-quiet-ones-leave-slowly",
+      title: "the quiet ones leave slowly",
+      theme: "patterns",
+      date: "2026-11-19",
+      excerpt: "some people don't slam the door. they just stop answering it.",
+      body: `some people don't slam the door. they just stop answering it.
+
+first the replies get shorter. then the plans get vague. then one day you realize you've been narrating your whole inner life to someone who stopped listening weeks ago, and no one ever said it out loud.
+
+withdrawal is rarely cruelty. more often it's a person running out of words for something they never learned to name, choosing the silence because it feels safer than a clumsy truth.
+
+it doesn't make it hurt less. but it changes the question. not *what did i do to make them go?* but *what were they so afraid would happen if they stayed?*
+
+you're allowed to hold both. the ache, and the understanding. neither one cancels the other.`
+    },
+    {
+      slug: "your-moon-is-the-part-the-room-never-meets",
+      title: "your moon is the part the room never meets",
+      theme: "astrology",
+      date: "2026-11-16",
+      excerpt: "your sun is what the room sees. your moon is what it never gets to.",
+      body: `your sun is what the room sees. your moon is what it never gets to.
+
+it's the part of you that decides, before you do, whether a moment is safe. the one that goes quiet at a certain tone of voice. the one that soothes itself in ways you've never explained to anyone — a particular song, a particular blanket, a particular kind of silence.
+
+astrology isn't a forecast here. it's a vocabulary. a way of saying *oh. that's the thing i do* and having a name to set beside it.
+
+look up your moon sign sometime. not to be told who you are. just to see which words the sky already used for what you thought was only yours.`
+    },
+    {
+      slug: "fog-on-the-lake-one-lantern-lit",
+      title: "fog on the lake, one lantern lit",
+      theme: "stillness",
+      date: "2026-11-13",
+      excerpt: "the lake doesn't try to hold the moon. it just stays still enough that the moon can rest there.",
+      body: `the lake doesn't try to hold the moon. it just stays still enough that the moon can rest there.
+
+i think that's most of it, honestly. what we call peace is rarely something we make. it's what's left when we stop stirring.
+
+tonight there is fog on the water, one lantern in a far window, and the kind of quiet that makes you notice how long you've been bracing.
+
+set it down for a minute. the dark isn't going anywhere. neither are you.`
+    },
+    {
+      slug: "the-part-of-you-that-is-still-on-watch",
+      title: "the part of you that is still on watch",
+      theme: "healing",
+      date: "2026-11-10",
+      excerpt: "it kept you alive. it just doesn't know the war ended.",
+      body: `there's a version of you that was built to get through. it's fast, watchful, impressive under pressure. it has never once been asked what it wants.
+
+healing isn't becoming someone new. it's the slow, strange work of showing that version the storm is over — that it can put the armor down and nothing will be taken.
+
+it will test you. it will tense at kindness, flinch at calm, wait for the other shoe. that's not failure. that's a body that learned peace was a trap, unlearning it one ordinary evening at a time.
+
+be gentle with the part that's still on watch. it kept you alive. it just doesn't know the war ended.`
+    },
+    {
+      slug: "when-explaining-becomes-armor",
+      title: "when explaining becomes armor",
+      theme: "patterns",
+      date: "2026-11-07",
+      excerpt: "it looks like consideration. often it's armor made of words.",
+      body: `some of us learned young that being misunderstood was dangerous. so we explain. we footnote our feelings. we offer the context before anyone asks, soften the request before we make it, apologize for the shape of our own needs.
+
+it looks like consideration. often it's armor made of words.
+
+notice who lets you explain once and simply believes you. notice who makes you build a case every time.
+
+the safe ones don't require a defense. you'll feel your shoulders drop around them before you can say why.`
+    },
+    {
+      slug: "water-moons-feel-the-weather-first",
+      title: "water moons feel the weather first",
+      theme: "astrology",
+      date: "2026-11-03",
+      excerpt: "cancer, scorpio, pisces. they read a room like a tide chart.",
+      body: `cancer, scorpio, pisces. the water moons.
+
+they walk into a room and read it like a tide chart — who's holding something back, who's one comment away from leaving, what the silence in the corner is actually made of. nobody taught them. it's just how the moon moves through them.
+
+it's a gift, and it's a lot. they absorb what was never theirs to carry and then wonder why they're so tired.
+
+if you have a water moon, maybe the question isn't *why am i so sensitive?* maybe it's *how much of this weather is actually mine?*`
+    }
+  ];
+
+  /* ═══════════════ nothing below needs editing ═══════════════ */
+
+  var $ = function (s) { return document.querySelector(s); };
+  var BASE_TITLE = document.title;
+  var descTag = document.querySelector('meta[name="description"]');
+  var BASE_DESC = descTag ? descTag.getAttribute("content") : "";
+
+  POSTS.sort(function (a, b) { return b.date.localeCompare(a.date); });
+
+  function esc(s) {
+    return s.replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function inline(s) { return esc(s).replace(/\*(.+?)\*/g, "<em>$1</em>"); }
+  function paras(body) {
+    return body.trim().split(/\n\s*\n/).map(function (p) {
+      return "<p>" + p.split("\n").map(inline).join("<br>") + "</p>";
+    }).join("");
+  }
+  function fmtDate(d) {
+    return new Date(d + "T12:00:00").toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }).toLowerCase();
+  }
+  function mins(b) { return Math.max(1, Math.round(b.trim().split(/\s+/).length / 200)); }
+  function metaLine(p) {
+    return '<span class="mt">' + esc(THEMES[p.theme] || p.theme) + '</span>' +
+           '<span class="md">' + fmtDate(p.date) + " · " + mins(p.body) + " min read</span>";
+  }
+
+  /* twinkling field */
+  (function stars() {
+    var host = $("#stars"), seed = 20261120, html = "";
+    function rnd() { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; }
+    for (var i = 0; i < 64; i++) {
+      var x = (rnd() * 100).toFixed(2), y = (rnd() * 100).toFixed(2);
+      var delay = "-" + (rnd() * 6).toFixed(2) + "s", dur = (3 + rnd() * 4).toFixed(2) + "s";
+      if (i % 8 === 0) {
+        var s = 9 + Math.round(rnd() * 8);
+        html += '<svg style="left:' + x + '%;top:' + y + '%;width:' + s + 'px;height:' + s + 'px;animation-delay:' + delay + ';animation-duration:' + dur + '"><use href="#sparkle"/></svg>';
+      } else {
+        var d = (1 + rnd() * 1.6).toFixed(1);
+        html += '<i style="left:' + x + '%;top:' + y + '%;width:' + d + 'px;height:' + d + 'px;animation-delay:' + delay + ';animation-duration:' + dur + '"></i>';
+      }
+    }
+    host.innerHTML = html;
+  })();
+
+  /* journal list + filter */
+  var current = "all";
+  function renderChips() {
+    var keys = ["all"].concat(Object.keys(THEMES));
+    $("#chips").innerHTML = keys.map(function (k) {
+      var label = k === "all" ? "all" : THEMES[k];
+      return '<button type="button" class="chip" data-k="' + k + '" aria-pressed="' + (k === current) + '">' + esc(label) + "</button>";
+    }).join("");
+  }
+  function renderList() {
+    var items = POSTS.filter(function (p) { return current === "all" || p.theme === current; });
+    $("#count").textContent = items.length + (items.length === 1 ? " entry" : " entries");
+    $("#list").innerHTML = items.map(function (p) {
+      return '<a class="card" href="#/post/' + esc(p.slug) + '">' +
+        '<svg class="spark" aria-hidden="true"><use href="#sparkle"/></svg>' +
+        '<p class="meta">' + metaLine(p) + "</p>" +
+        "<h3>" + esc(p.title) + "</h3>" +
+        '<p class="ex">' + inline(p.excerpt) + "</p>" +
+        '<span class="more">read →</span></a>';
+    }).join("");
+  }
+  $("#chips").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip");
+    if (!b) return;
+    current = b.getAttribute("data-k");
+    renderChips();
+    renderList();
+  });
+
+  /* social + year */
+  (function footer() {
+    var out = "";
+    if (SOCIAL.tiktok) out += '<a href="' + esc(SOCIAL.tiktok) + '" target="_blank" rel="noopener">tiktok</a>';
+    if (SOCIAL.instagram) out += '<a href="' + esc(SOCIAL.instagram) + '" target="_blank" rel="noopener">instagram</a>';
+    $("#social").innerHTML = out;
+    $("#yr").textContent = new Date().getFullYear();
+  })();
+
+  /* simple page routing: #/post/slug opens an entry; anything else is home */
+  var reading = false, homeY = 0;
+  function setDesc(t) { if (descTag) descTag.setAttribute("content", t); }
+  function jump(y) { window.scrollTo({ top: y, behavior: "instant" }); }
+
+  function showPost(p) {
+    if (!reading) homeY = window.scrollY;
+    reading = true;
+    $("#home").hidden = true;
+    $("#reader").hidden = false;
+    $("#r-meta").innerHTML = metaLine(p);
+    $("#r-title").textContent = p.title;
+    $("#r-body").innerHTML = paras(p.body);
+    var i = POSTS.indexOf(p), n = POSTS[(i + 1) % POSTS.length];
+    $("#r-pager").innerHTML = n === p
+      ? '<a href="#journal">← the journal</a>'
+      : '<a href="#journal">← the journal</a><a href="#/post/' + esc(n.slug) + '" style="text-align:right">next entry →<em>' + esc(n.title) + "</em></a>";
+    document.title = p.title + " — moonwater theory";
+    setDesc(p.excerpt.replace(/\*/g, ""));
+    jump(0);
+  }
+  function showHome() {
+    var was = reading;
+    reading = false;
+    $("#home").hidden = false;
+    $("#reader").hidden = true;
+    document.title = BASE_TITLE;
+    setDesc(BASE_DESC);
+    return was;
+  }
+  function route() {
+    var h = location.hash;
+    var m = h.match(/^#\/post\/([a-z0-9-]+)/i);
+    var post = m && POSTS.filter(function (p) { return p.slug === m[1]; })[0];
+    if (post) { showPost(post); return; }
+    var was = showHome();
+    var id = h.replace(/^#\/?/, "");
+    var el = id && document.getElementById(id);
+    if (el) el.scrollIntoView(); else jump(was ? homeY : 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  renderChips();
+  renderList();
+  route();
+})();
+</script>
+</body>
+</html>
