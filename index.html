@@ -155,9 +155,15 @@ h2{margin:0 0 1.5rem;font-weight:500;font-style:italic;font-size:clamp(2rem,7vw,
 .rule{height:1px;margin:0 0 2rem;background:linear-gradient(90deg,var(--gold),transparent);opacity:.6}
 .prose p{margin:0 0 1.5rem;font-size:1.38rem;line-height:1.72;color:#f6f0ff}
 .prose em{color:var(--gold-hi)}
+.lead{margin:0 0 2.2rem;padding:.3rem 0 .3rem 1.3rem;border-left:2px solid var(--gold);font-style:italic;font-size:1.6rem;line-height:1.5;color:var(--gold-hi)}
+.watch{margin:2rem 0 0}
+.watch a{display:inline-block;padding:.9rem 1.5rem;border-radius:999px;border:1px solid var(--gold);color:var(--gold-hi);text-decoration:none;font:500 .76rem/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;background:rgba(36,16,70,.55);transition:background .25s,box-shadow .25s}
+.watch a:hover{background:rgba(217,180,90,.14);box-shadow:0 0 26px rgba(217,180,90,.22)}
 .endmark{display:flex;justify-content:center;color:var(--gold);margin:2.4rem 0 2rem}
 .endmark svg{width:18px;height:18px}
-.pager{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;padding-top:1.4rem;border-top:1px solid rgba(217,180,90,.2)}
+.pager{display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start;padding-top:1.4rem;border-top:1px solid rgba(217,180,90,.2)}
+.pager .next{text-align:left}
+@media(min-width:560px){.pager{flex-direction:row;justify-content:space-between}.pager .next{text-align:right}}
 .pager a{font:500 .74rem/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--gold-hi);padding:.5rem 0}
 .pager a em{display:block;font-family:var(--serif);font-size:1.25rem;letter-spacing:0;text-transform:none;color:var(--text);margin-top:.2rem}
 
@@ -297,7 +303,9 @@ footer .ornament{max-width:16rem;margin:0 auto}
       <p class="meta" id="r-meta"></p>
       <h1 id="r-title"></h1>
       <div class="rule"></div>
+      <blockquote class="lead" id="r-lead" hidden></blockquote>
       <div class="prose" id="r-body"></div>
+      <p class="watch" id="r-watch" hidden></p>
     </article>
     <div class="endmark" aria-hidden="true"><svg><use href="#sparkle"/></svg></div>
     <nav class="pager" id="r-pager" aria-label="more entries"></nav>
@@ -340,11 +348,43 @@ footer .ornament{max-width:16rem;margin:0 auto}
        theme   : patterns | astrology | stillness | healing
        date    : YYYY-MM-DD
        excerpt : the line shown on the card
+       lead    : (optional) the words that appear on the video itself,
+                 shown as a pull-quote above the entry
        body    : the full entry. leave a blank line between
                  paragraphs. put *stars* around words to italicize.
-     These six are placeholders in the brand voice — swap in your own.
+       tiktok  : (optional) link to the video — adds a "watch" button
+     The entries marked "placeholder" are sample writing — swap in your own.
   ─────────────────────────────────────────────────────────── */
   var POSTS = [
+    {
+      slug: "sometimes-overgiving-isnt-kindness",
+      title: "sometimes overgiving isn't kindness",
+      theme: "patterns",
+      date: "2026-11-20",
+      excerpt: "Sometimes overgiving isn't kindness. Sometimes it's fear of not being needed.",
+      lead: `Sometimes
+overgiving isn't kindness.
+Sometimes it's fear of
+not being needed.
+You give more
+than anyone asked for...
+then quietly hurt
+when they don't give it back.
+Give freely.
+Not to become indispensable 🌙`,
+      body: `Sometimes we give because we genuinely want to.
+And sometimes we give because being needed feels safer than wondering whether we'd still be loved without being useful.
+
+Overgiving can create invisible expectations.
+I did this for you. I showed up. I gave everything.
+And when it isn't returned, resentment quietly grows.
+
+Real generosity has freedom in it 🌙
+You don't have to make yourself indispensable to deserve a place in someone's life.`,
+      tiktok: "https://www.tiktok.com/t/ZPNNWrjkT/"
+    },
+
+    /* ── placeholder entries below: sample writing, to be replaced ── */
     {
       slug: "the-quiet-ones-leave-slowly",
       title: "the quiet ones leave slowly",
@@ -536,11 +576,17 @@ if you have a water moon, maybe the question isn't *why am i so sensitive?* mayb
     $("#reader").hidden = false;
     $("#r-meta").innerHTML = metaLine(p);
     $("#r-title").textContent = p.title;
+    var lead = $("#r-lead");
+    lead.hidden = !p.lead;
+    lead.innerHTML = p.lead ? p.lead.trim().split("\n").map(inline).join("<br>") : "";
     $("#r-body").innerHTML = paras(p.body);
+    var watch = $("#r-watch");
+    watch.hidden = !p.tiktok;
+    watch.innerHTML = p.tiktok ? '<a href="' + esc(p.tiktok) + '" target="_blank" rel="noopener">watch this on tiktok ↗</a>' : "";
     var i = POSTS.indexOf(p), n = POSTS[(i + 1) % POSTS.length];
     $("#r-pager").innerHTML = n === p
       ? '<a href="#journal">← the journal</a>'
-      : '<a href="#journal">← the journal</a><a href="#/post/' + esc(n.slug) + '" style="text-align:right">next entry →<em>' + esc(n.title) + "</em></a>";
+      : '<a href="#journal">← the journal</a><a class="next" href="#/post/' + esc(n.slug) + '">next entry →<em>' + esc(n.title) + "</em></a>";
     document.title = p.title + " — moonwater theory";
     setDesc(p.excerpt.replace(/\*/g, ""));
     jump(0);
